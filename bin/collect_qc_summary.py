@@ -21,6 +21,7 @@ if len(sys.argv) == 1:
 args = parser.parse_args()
 
 summary_data = collect_qc_summary_data(path=args.path)
+summary_data.sort()
 
 write_qc_summary_header()
 for summary_line in summary_data:
