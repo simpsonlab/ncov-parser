@@ -7,6 +7,7 @@ import argparse
 import sys
 import ncov.parser.qc as qc
 import ncov.parser
+import csv
 
 parser = argparse.ArgumentParser(description="Tool for summarizing QC data")
 parser.add_argument('-c', '--consensus', help='<sample>.consensus.fasta file to process')
@@ -22,6 +23,8 @@ parser.add_argument('-a', '--alleles',
                     help='full path to the alleles.tsv file')
 parser.add_argument('-s', '--sample',
                     help='name of sample being processed')
+parser.add_argument('-x', '--mixture', default=None,
+                    help='full path to the mixture report')
 parser.add_argument('-p', '--platform', default='illumina',
                     help='sequencing platform used')
 parser.add_argument('-r', '--run_name',
@@ -79,6 +82,17 @@ if num_indel_non_triplet > 0:
 
 if qc_line['num_consensus_iupac'] > 5:
     qc_flags.append("EXCESS_AMBIGUITY")
+
+# the mixture report is currently generated for illuina runs, ont is
+# not supported at this time
+if args.platform == 'illumina':
+    mixture = set()
+    with open(args.mixture, 'r') as mfh:
+        reader = csv.DictReader(mfh, delimiter='\t')
+        for record in reader:
+            mixture.add(record['sample_a'])
+    if args.sample in mixture:
+        qc_flags.append("POSSIBLE_MIXTURE")
 
 # Calculate number of variants per week, while accounting for incompleteness
 if qc_line['num_weeks'] != 'NA':
