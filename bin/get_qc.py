@@ -85,14 +85,15 @@ if qc_line['num_consensus_iupac'] > 5:
 
 # the mixture report is currently generated for illuina runs, ont is
 # not supported at this time
-if args.platform == 'illumina':
-    mixture = set()
-    with open(args.mixture, 'r') as mfh:
-        reader = csv.DictReader(mfh, delimiter='\t')
-        for record in reader:
-            mixture.add(record['sample_a'])
-    if args.sample in mixture:
-        qc_flags.append("POSSIBLE_MIXTURE")
+if args.mixture:
+    if args.platform == 'illumina':
+        mixture = set()
+        with open(args.mixture, 'r') as mfh:
+            reader = csv.DictReader(mfh, delimiter='\t')
+            for record in reader:
+                mixture.add(record['sample_a'])
+        if args.sample in mixture:
+            qc_flags.append("POSSIBLE_MIXTURE")
 
 # Calculate number of variants per week, while accounting for incompleteness
 if qc_line['num_weeks'] != 'NA':
