@@ -8,7 +8,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="ncov_parser",
-    version="0.6.0",
+    version="0.6.1",
     author="Richard J. de Borja",
     author_email="richard.deborja@oicr.on.ca",
     description="A nCoV package for parsing analysis files",
@@ -16,6 +16,7 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     url="https://github.com/rdeborja/ncov_parser",
     packages=setuptools.find_packages(),
+    license="MIT",
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
