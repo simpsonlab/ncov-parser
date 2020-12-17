@@ -104,9 +104,11 @@ if qc_line['num_weeks'] != 'NA':
         # very conservative upper limit on the number of acceptable variants
         # samples that fail this check should be manually reviewed incorporating other
         # evidence (frameshift indels, not failed outright)
-        variant_threshold = qc_line['num_weeks'] * 0.75 + 15
-        if scaled_variants > variant_threshold:
-            qc_flags.append("EXCESS_VARIANTS")
+        # Removing EXCESS_VARIANTS flag due to discovery of lineage carrying
+        # high number of mutations -- December 17, 2020.
+        #variant_threshold = qc_line['num_weeks'] * 0.75 + 15
+        #if scaled_variants > variant_threshold:
+        #    qc_flags.append("EXCESS_VARIANTS")
         qc_line['scaled_variants_snvs'] = "%.2f" % (scaled_variants)
     else:
         qc_line['scaled_variants_snvs'] = "NA"
