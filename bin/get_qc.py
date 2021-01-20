@@ -29,6 +29,8 @@ parser.add_argument('-p', '--platform', default='illumina',
                     help='sequencing platform used')
 parser.add_argument('-r', '--run_name',
                     help='run name for sample')
+parser.add_argument('-l', '--lineage',
+                    help='full path to the Pangolin lineage report')
 if len(sys.argv) == 1:
     parser.print_help(sys.stderr)
     sys.exit('Invalid number of arguments')
@@ -68,6 +70,15 @@ qc_line.update(cons.get_genome_completeness())
 
 coverage = ncov.parser.PerBaseCoverage(file=args.coverage)
 qc_line.update(coverage.get_coverage_stats())
+
+# Add the lineage from the Pangolin report
+try:
+    lineage = ncov.parser.Lineage(file=args.lineage)
+    lineage.create_lineage_dictionary()
+    qc_line.update({"lineage" : lineage.lineage_dict[args.sample]})
+except:
+    qc_line.update({"lineage" : "none"})
+
 
 # Produce warning flags
 qc_flags = list()

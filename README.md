@@ -37,6 +37,7 @@ be processed.
 ```
 ncov.parser.Alleles
 ncov.parser.Consensus
+ncov.parser.Lineage
 ncov.parser.Meta
 ncov.parser.PerBaseCoverage
 ncov.parser.Variants
@@ -62,7 +63,7 @@ get_qc.py --variants <sample>.variants.tsv or <sample>.pass.vcf
 --coverage <sample>.per_base_coverage.bed --meta <metadata>.tsv
 --consensus <sample>.primertrimmed.consensus.fa [--indel] --sample <samplename>
 --platform <illumina or oxford-nanopore> --run_name <run_name> --alleles alleles.tsv
---indel
+--indel --lineage <Pangolin lineage report>
 ```
 
 Note the `--indel` flag should only be present if indels will be used in the
