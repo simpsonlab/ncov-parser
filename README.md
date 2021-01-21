@@ -40,6 +40,7 @@ ncov.parser.Consensus
 ncov.parser.Lineage
 ncov.parser.Meta
 ncov.parser.PerBaseCoverage
+ncov.parser.Snpeff
 ncov.parser.Variants
 ncov.parser.Vcf
 ncov.parser.primers
@@ -63,7 +64,7 @@ get_qc.py --variants <sample>.variants.tsv or <sample>.pass.vcf
 --coverage <sample>.per_base_coverage.bed --meta <metadata>.tsv
 --consensus <sample>.primertrimmed.consensus.fa [--indel] --sample <samplename>
 --platform <illumina or oxford-nanopore> --run_name <run_name> --alleles alleles.tsv
---indel --lineage <Pangolin lineage report>
+--indel --lineage <Pangolin lineage report> --aa_table <SNPEff annotation table>
 ```
 
 Note the `--indel` flag should only be present if indels will be used in the

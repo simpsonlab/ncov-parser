@@ -31,6 +31,8 @@ parser.add_argument('-r', '--run_name',
                     help='run name for sample')
 parser.add_argument('-l', '--lineage',
                     help='full path to the Pangolin lineage report')
+parser.add_argument('-t', '--aa_table',
+                    help='full path to the <sample>_aa_table.tsv file')
 if len(sys.argv) == 1:
     parser.print_help(sys.stderr)
     sys.exit('Invalid number of arguments')
@@ -79,6 +81,14 @@ try:
 except:
     qc_line.update({"lineage" : "none"})
 
+# Get a list of consequences from the SNPEff variant annotations
+try:
+    annotations = ncov.parser.Snpeff(file=args.aa_table)
+    annotations.get_list_of_consequences()
+    if annotations.has_frameshift():
+        frameshift_indels = True
+except:
+    frameshift_indels = False
 
 # Produce warning flags
 qc_flags = list()
@@ -87,8 +97,9 @@ if qc_line['genome_completeness'] < 0.5:
 elif qc_line['genome_completeness'] < 0.9:
     qc_flags.append("PARTIAL_GENOME")
 
-num_indel_non_triplet = qc_line['num_variants_indel'] - qc_line['num_variants_indel_triplet']
-if num_indel_non_triplet > 0:
+#num_indel_non_triplet = qc_line['num_variants_indel'] - qc_line['num_variants_indel_triplet']
+#if num_indel_non_triplet > 0:
+if frameshift_indels:
     qc_flags.append("POSSIBLE_FRAMESHIFT_INDELS")
 
 if qc_line['num_consensus_iupac'] > 5:

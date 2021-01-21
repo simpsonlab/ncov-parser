@@ -8,4 +8,4 @@ from .Vcf import *
 from .NegativeControl import *
 from .primers import *
 from .Lineage import *
-
+from .Snpeff import *
