@@ -33,6 +33,8 @@ parser.add_argument('-l', '--lineage',
                     help='full path to the Pangolin lineage report')
 parser.add_argument('-t', '--aa_table',
                     help='full path to the <sample>_aa_table.tsv file')
+parser.add_argument('-u', '--mutations',
+                    help='full path to the <run>_ncov_watch_variants.tsv file')
 if len(sys.argv) == 1:
     parser.print_help(sys.stderr)
     sys.exit('Invalid number of arguments')
@@ -81,14 +83,22 @@ try:
 except:
     qc_line.update({"lineage" : "none"})
 
+# Add the watch list mutations
+try:
+    watchlist = ncov.parser.WatchList(file=args.mutations)
+    qc_line.update({"mutations" : watchlist.get_mutation_string(sample=args.sample)})
+except:
+    qc_line.update({"mutations" : "none"})
+
 # Get a list of consequences from the SNPEff variant annotations
+frameshift_indels = False
 try:
     annotations = ncov.parser.Snpeff(file=args.aa_table)
     annotations.get_list_of_consequences()
     if annotations.has_frameshift():
         frameshift_indels = True
 except:
-    frameshift_indels = False
+    pass
 
 # Produce warning flags
 qc_flags = list()

@@ -27,6 +27,7 @@ def write_qc_summary(summary):
         * genome_completeness
         * qc_pass
         * lineage
+        * mutations
 
     Arguments:
         * summary: a dictionary containing the sample QC details
@@ -51,7 +52,8 @@ def write_qc_summary(summary):
         str(summary['scaled_variants_snvs']),
         str(summary['genome_completeness']),
         str(summary['qc_pass']),
-        str(summary['lineage'])])
+        str(summary['lineage']),
+        str(summary['mutations'])])
     print(summary_line)
 
 
@@ -71,7 +73,8 @@ def write_qc_summary_header(header=['sample',
                                     'scaled_variants_snvs',
                                     'genome_completeness',
                                     'qc_pass',
-                                    'lineage']):
+                                    'lineage',
+                                    'mutations']):
     '''
     Write the header for the QC summary data
 
