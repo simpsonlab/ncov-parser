@@ -26,7 +26,10 @@ class WatchList():
         with open(file, 'r') as fh:
             reader = csv.DictReader(fh, delimiter=delimiter)
             for row in reader:
-                samplename = re.sub('.variants.tsv', '', row['sample'])
+                if row['sample'].endswith('.variants.tsv'):
+                    samplename = re.sub('.variants.tsv', '', row['sample'])
+                elif row['sample'].endswith('.pass.vcf.gz'):
+                    samplename = re.sub('.pass.vcf.gz', '', row['sample'])
                 if samplename in watch:
                     watch[samplename].append(row)
                 else:
@@ -45,6 +48,8 @@ class WatchList():
                     mutations.append(item['mutation'])
             else:
                 continue
-
-        return delimiter.join(mutations)
+        if len(mutations) == 0:
+            return 'none'
+        else:
+            return delimiter.join(mutations)
 
