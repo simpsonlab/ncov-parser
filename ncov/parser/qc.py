@@ -74,7 +74,7 @@ def write_qc_summary_header(header=['sample',
                                     'genome_completeness',
                                     'qc_pass',
                                     'lineage',
-                                    'mutations']):
+                                    'watch_mutations']):
     '''
     Write the header for the QC summary data
 
