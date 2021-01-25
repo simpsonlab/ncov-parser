@@ -1,0 +1,15 @@
+sample	mutation	contig	position	reference	alt
+sampleA.variants.tsv	S:del69-70	MN908947.3	21764	ATACATG	A
+sampleA.variants.tsv	S:del144	MN908947.3	21990	TTTA	T
+sampleA.variants.tsv	S:A570D	MN908947.3	23271	C	A
+sampleA.variants.tsv	S:P681H	MN908947.3	23604	C	A
+sampleA.variants.tsv	S:T716I	MN908947.3	23709	C	T
+sampleA.variants.tsv	S:S982A	MN908947.3	24506	T	G
+sampleB.variants.tsv	S:del69-70	MN908947.3	21764	ATACATG	A
+sampleB.variants.tsv	S:del144	MN908947.3	21990	TTTA	T
+sampleB.variants.tsv	S:N501Y	MN908947.3	23063	A	T
+sampleB.variants.tsv	S:A570D	MN908947.3	23271	C	A
+sampleB.variants.tsv	S:P681H	MN908947.3	23604	C	A
+sampleB.variants.tsv	S:T716I	MN908947.3	23709	C	T
+sampleB.variants.tsv	S:S982A	MN908947.3	24506	T	G
+sampleB.variants.tsv	S:D1118H	MN908947.3	24914	G	C

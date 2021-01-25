@@ -1,0 +1,7 @@
+sample	chr	pos	ref	alt	Consequence	gene	protein	aa
+sampleA	MN908947.3	241	C	T	upstream_gene_variant	orf1ab		NA
+sampleA	MN908947.3	3037	C	T	synonymous_variant	orf1ab	F924F	orf1ab-F924F
+sampleA	MN908947.3	14408	C	T	missense_variant	orf1ab	P4715L	orf1ab-P4715L
+sampleA	MN908947.3	21625	A	G	synonymous_variant	S	R21R	S-R21R
+sampleA	MN908947.3	28883	G	C	missense_variant	N	G204R	N-G204R
+sampleA	MN908947.3	29580	CT	C	frameshift_variant	ORF10	P10fs	ORF10-P10fs

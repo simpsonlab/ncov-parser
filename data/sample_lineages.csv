@@ -1,0 +1,4 @@
+taxon,lineage,probability,pangoLEARN_version,status,note
+sampleA/ARTIC/nanopolish,B.1.1.43,1.0,2021-01-06,passed_qc,
+sampleB/ARTIC/nanopolish,B.1.36,1.0,2021-01-06,passed_qc,
+sampleC/ARTIC/nanopolish,B.1.1.7,1.0,2021-01-06,passed_qc,

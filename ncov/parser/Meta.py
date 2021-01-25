@@ -64,7 +64,7 @@ class Meta():
                 self.data = data
                 return data
         except:
-            print("Invalid metadata file")
+            pass
 
 
     def get_meta_for_sample(self, sample):
