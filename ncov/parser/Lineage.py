@@ -17,10 +17,13 @@ class Lineage():
         consensus FASTA files are generated as "<sample>/ARTIC/nanopolish"
         whereas Illumina runs (iVar) use "Consensus_<sample>"
         """
-        samplename = row['taxon'].split('/')[0]
-        if samplename.startswith('Consensus_'):
-            samplename = re.sub('Consensus_', '', samplename)
-        return samplename
+        sample_name = row['taxon']
+        sample_name = re.sub('^Consensus_', '', sample_name) # added by ivar
+        sample_name = re.sub('.primertrimmed.consensus_threshold_0.75_quality_20', '', sample_name) # added by ivar
+        sample_name = re.sub('_MN908947.3', '', sample_name) # added by pangolin
+        sample_name = re.sub('/ARTIC/nanopolish', '', sample_name) # added by ARTIC
+        sample_name = re.sub('/ARTIC/medaka', '', sample_name) # added by ARTIC
+        return sample_name
             
 
     def get_lineage(self, row):
