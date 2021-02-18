@@ -32,6 +32,16 @@ class Lineage():
         """
         return row['lineage']
 
+
+    def get_notes(self, row):
+        """
+        Return the notes that pangolin added to the lineage assignment
+        """
+        n = row['note']
+        if n is None or n == "":
+            return "none"
+        else:
+            return n.replace(" ", "_")
     
     def create_lineage_dictionary(self):
         """
@@ -44,7 +54,8 @@ class Lineage():
             for row in reader:
                 sample = self.get_sample_name(row=row)
                 lineage = self.get_lineage(row=row)
-                lineage_dict[sample] = lineage
+                notes = self.get_notes(row=row)
+                lineage_dict[sample] = { "lineage":lineage, "notes":notes }
         self.lineage_dict = lineage_dict
         return lineage_dict
 
