@@ -79,9 +79,11 @@ qc_line.update(coverage.get_coverage_stats())
 try:
     lineage = ncov.parser.Lineage(file=args.lineage)
     lineage.create_lineage_dictionary()
-    qc_line.update({"lineage" : lineage.lineage_dict[args.sample]})
+    qc_line.update({"lineage" : lineage.lineage_dict[args.sample]["lineage"]})
+    qc_line.update({"lineage_notes" : lineage.lineage_dict[args.sample]["notes"]})
 except:
     qc_line.update({"lineage" : "none"})
+    qc_line.update({"lineage_notes" : "none"})
 
 # Add the watch list mutations
 try:
