@@ -28,6 +28,8 @@ class WatchList():
             for row in reader:
                 if row['sample'].endswith('.variants.tsv'):
                     samplename = re.sub('.variants.tsv', '', row['sample'])
+                elif row['sample'].endswith('.variants.norm.vcf'):
+                    samplename = re.sub('.variants.norm.vcf', '', row['sample'])
                 elif row['sample'].endswith('.pass.vcf.gz'):
                     samplename = re.sub('.pass.vcf.gz', '', row['sample'])
                 if samplename in watch:
