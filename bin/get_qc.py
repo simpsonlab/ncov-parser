@@ -55,8 +55,11 @@ if args.platform == 'illumina':
     if str(args.variants).endswith('.variants.tsv'):
         vars = ncov.parser.Variants(file=args.variants)
         qc_line.update(vars.get_total_variants())
+    elif str(args.variants).endswith('.vcf') or str(args.variants).endswith('.vcf.gz'):
+        vars = ncov.parser.Vcf(file=args.variants)
+        qc_line.update(vars.get_variant_counts())
     else:
-        sys.exit('Must be a valid variant.tsv file for the Illumina platform')
+        sys.exit('Must be a valid variant.tsv or .vcf file for the Illumina platform')
 elif args.platform == 'oxford-nanopore':
     if str(args.variants).endswith('.vcf') or str(args.variants).endswith('.vcf.gz'):
         vars = ncov.parser.Vcf(file=args.variants)
