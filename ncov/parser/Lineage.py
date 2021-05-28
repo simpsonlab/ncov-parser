@@ -37,11 +37,16 @@ class Lineage():
         """
         Return the notes that pangolin added to the lineage assignment
         """
-        n = row['note']
+        #n = row['note']
+        n = ' '.split(row['note'])
         if n is None or n == "":
             return "none"
         else:
-            return n.replace(" ", "_")
+            alt = re.sub(';', '', n[4])
+            ref = re.sub(';', '', n[7])
+            amb = n[-1]
+            return '/'.join([alt, ref, amb])
+            #return n.replace(" ", "_")
     
     def create_lineage_dictionary(self):
         """
