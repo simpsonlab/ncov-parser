@@ -5,9 +5,12 @@
 The `ncov_parser` package provides a suite of tools to parse the files generated
 in the Nextflow workflow and provide a QC summary file.  The package requires
 several files including:
-* <sample>.variants.tsv/<sample>.pass.vcf
+* <sample>.variants.tsv
+* <sample>.variants.norm.vcf
+* <sample>.pass.vcf
 * <sample>.per_base_coverage.bed
 * <sample>.primertrimmed.consensus.fa
+* <sample>.consensus.fasta
 * alleles.tsv
 
 An optional metadata file with qPCR ct and collection date values can be
