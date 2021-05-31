@@ -41,7 +41,12 @@ class Lineage():
         if n is None or n == "":
             return "none"
         else:
-            return n.replace(" ", "_")
+            n_dict = n.split(' ')
+            alt = re.sub(';', '', n_dict[4])
+            ref = re.sub(';', '', n_dict[7])
+            amb = n_dict[-1]
+            return '/'.join([alt, ref, amb])
+            #return n.replace(" ", "_")
     
     def create_lineage_dictionary(self):
         """
