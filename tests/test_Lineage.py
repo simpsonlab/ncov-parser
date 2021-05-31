@@ -5,14 +5,15 @@ Suite of tests for the Consensus module
 import unittest
 import ncov.parser
 
-test_lineage = ncov.parser.Lineage(file='data/sample_lineages.csv')
+test_lineage = ncov.parser.Lineage(file='data/test_lineages.csv')
 
 
 class LineageTest(unittest.TestCase):
     def test_create_lineage_dictionary(self):
         lineage_dict = test_lineage.create_lineage_dictionary()
-        self.assertEqual(lineage_dict['sampleA']['lineage'], 'B.1.1.43')
-        self.assertEqual(lineage_dict['sampleB']['lineage'], 'B.1.36')
+        self.assertEqual(lineage_dict['sampleA']['lineage'], 'B.1.1.7')
+        self.assertEqual(lineage_dict['sampleA']['notes'], '18/3/0')
+        self.assertEqual(lineage_dict['sampleB']['lineage'], 'B.1.1.7')
         self.assertEqual(lineage_dict['sampleC']['lineage'], 'B.1.1.7')
     def test_get_sample_name(self):
         sample_row = {'taxon' : 'sampleA/ARTIC/nanopolish',
