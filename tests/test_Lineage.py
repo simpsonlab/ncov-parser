@@ -15,6 +15,7 @@ class LineageTest(unittest.TestCase):
         self.assertEqual(lineage_dict['sampleA']['notes'], '18/3/0')
         self.assertEqual(lineage_dict['sampleB']['lineage'], 'B.1.1.7')
         self.assertEqual(lineage_dict['sampleC']['lineage'], 'B.1.1.7')
+        self.assertEqual(lineage_dict['sampleC']['scorpio_call'], 'cB.1.1.7')
     def test_get_sample_name(self):
         sample_row = {'taxon' : 'sampleA/ARTIC/nanopolish',
                       'lineage' : 'B.1.1.43',
