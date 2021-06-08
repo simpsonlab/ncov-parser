@@ -84,9 +84,11 @@ try:
     lineage.create_lineage_dictionary()
     qc_line.update({"lineage" : lineage.lineage_dict[args.sample]["lineage"]})
     qc_line.update({"lineage_notes" : lineage.lineage_dict[args.sample]["notes"]})
+    qc_line.update({"scorpio_call" : lineage.lineage_dict[args.sample]["scorpio_call"]})
 except:
     qc_line.update({"lineage" : "none"})
     qc_line.update({"lineage_notes" : "none"})
+    qc_line.update({"scorpio_call" : "none"})
 
 # Add the watch list mutations
 try:

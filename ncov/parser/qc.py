@@ -28,6 +28,7 @@ def write_qc_summary(summary):
         * qc_pass
         * lineage
         * lineage_notes
+        * scorpio_call
         * mutations
 
     Arguments:
@@ -55,6 +56,7 @@ def write_qc_summary(summary):
         str(summary['qc_pass']),
         str(summary['lineage']),
         str(summary['lineage_notes']),
+        str(summary['scorpio_call']),
         str(summary['mutations'])])
     print(summary_line)
 
@@ -77,6 +79,7 @@ def write_qc_summary_header(header=['sample',
                                     'qc_pass',
                                     'lineage',
                                     'lineage_notes',
+                                    'scorpio_call',
                                     'watch_mutations']):
     '''
     Write the header for the QC summary data
