@@ -45,8 +45,10 @@ class Lineage():
             alt = re.sub(';', '', n_dict[4])
             ref = re.sub(';', '', n_dict[7])
             amb = n_dict[-1]
-            return '/'.join([alt, ref, amb])
-            #return n.replace(" ", "_")
+            tag = 'alt/ref/amb:'
+            value = '/'.join([alt, ref, amb])
+            return ''.join([tag, value])
+
 
     def get_scorpio_call(self, row):
         """
