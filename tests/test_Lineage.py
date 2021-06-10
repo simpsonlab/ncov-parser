@@ -12,7 +12,7 @@ class LineageTest(unittest.TestCase):
     def test_create_lineage_dictionary(self):
         lineage_dict = test_lineage.create_lineage_dictionary()
         self.assertEqual(lineage_dict['sampleA']['lineage'], 'B.1.1.7')
-        self.assertEqual(lineage_dict['sampleA']['notes'], '18/3/0')
+        self.assertEqual(lineage_dict['sampleA']['notes'], 'alt/ref/amb:18/3/0')
         self.assertEqual(lineage_dict['sampleB']['lineage'], 'B.1.1.7')
         self.assertEqual(lineage_dict['sampleC']['lineage'], 'B.1.1.7')
         self.assertEqual(lineage_dict['sampleC']['scorpio_call'], 'cB.1.1.7')
