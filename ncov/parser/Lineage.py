@@ -47,6 +47,13 @@ class Lineage():
             amb = n_dict[-1]
             return '/'.join([alt, ref, amb])
             #return n.replace(" ", "_")
+
+    def get_scorpio_call(self, row):
+        """
+        Return the scorpio_call value
+        """
+        return row['scorpio_call']
+
     
     def create_lineage_dictionary(self):
         """
@@ -60,7 +67,8 @@ class Lineage():
                 sample = self.get_sample_name(row=row)
                 lineage = self.get_lineage(row=row)
                 notes = self.get_notes(row=row)
-                lineage_dict[sample] = { "lineage":lineage, "notes":notes }
+                scorpio_call = self.get_scorpio_call(row=row)
+                lineage_dict[sample] = { "lineage":lineage, "notes":notes, "scorpio_call": scorpio_call }
         self.lineage_dict = lineage_dict
         return lineage_dict
 
