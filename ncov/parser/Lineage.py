@@ -38,9 +38,7 @@ class Lineage():
         Return the notes that pangolin added to the lineage assignment
         """
         n = row['note']
-        if n is None or n == "":
-            return "none"
-        else:
+        if n.startswith('scorpio call'):
             n_dict = n.split(' ')
             alt = re.sub(';', '', n_dict[4])
             ref = re.sub(';', '', n_dict[7])
@@ -48,6 +46,9 @@ class Lineage():
             tag = 'alt/ref/amb:'
             value = '/'.join([alt, ref, amb])
             return ''.join([tag, value])
+        #if n is None or n == "" or n.startswith('Assigned'):
+        else:
+            return "none"
 
 
     def get_scorpio_call(self, row):
