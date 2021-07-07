@@ -72,7 +72,7 @@ def create_primer_pairs(primers, left='_LEFT.*', right='_RIGHT.*'):
     return primer_pairs
 
 
-def create_amplicons(primer_pairs, offset=0, type='unique_amplicons'):
+def create_amplicons(primer_pairs, offset=0, type='unique_amplicons', prefix='nCoV-2019'):
     '''
     Create an array of BED regions as either full including primers, with no
     primers included, or as unique amplicons without overlaps.
@@ -92,9 +92,9 @@ def create_amplicons(primer_pairs, offset=0, type='unique_amplicons'):
     amplicons = list()
     for index in range(0, len(primer_pairs)):
         amplicon_id = index + 1
-        primer_name = f'nCoV-2019_{amplicon_id}'
-        previous_primer_name = f'nCoV-2019_{amplicon_id-1}'
-        next_primer_name = f'nCoV-2019_{amplicon_id + 1}'
+        primer_name = f'{prefix}_{amplicon_id}'
+        previous_primer_name = f'{prefix}_{amplicon_id-1}'
+        next_primer_name = f'{prefix}_{amplicon_id + 1}'
         if type == 'full':
             start = int(primer_pairs[primer_name]['left_start'])
             end = int(primer_pairs[primer_name]['right_end'])
