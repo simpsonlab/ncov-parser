@@ -14,6 +14,8 @@ parser.add_argument('-o', '--output', default='out.bed',
                     help='filename to write BED to')
 parser.add_argument('--bed_type', default='unique_amplicons',
                     help='type of BED to produce (e.g. full, no_primers, unique-amplicons')
+parser.add_argument('--primer_prefix', default='nCoV-2019',
+                    help='the primer name prefix used in the BED file (default: nCoV-2019)')
 if len(sys.argv) <= 1:
     parser.print_help(sys.stderr)
     sys.exit('Invalid number of arguments')
@@ -23,7 +25,8 @@ primers = pr.read_bed_file(args.primers)
 primer_pairs = pr.create_primer_pairs(primers=primers)
 amplicon_ranges = pr.create_amplicons(primer_pairs=primer_pairs,
                                       offset=args.offset,
-                                      type=args.bed_type)
+                                      type=args.bed_type,
+                                      prefix=args.primer_prefix)
 
 with open(args.output, 'w') as file_o:
     for line in amplicon_ranges:
