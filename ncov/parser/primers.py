@@ -72,16 +72,17 @@ def create_primer_pairs(primers, left='_LEFT.*', right='_RIGHT.*'):
     return primer_pairs
 
 
-def create_amplicons(primer_pairs, offset=0, type='unique_amplicons', prefix='nCoV-2019'):
+def create_amplicons(primer_pairs, offset=0, type='unique_amplicons', prefix='nCoV-2019', delim='_'):
     '''
     Create an array of BED regions as either full including primers, with no
     primers included, or as unique amplicons without overlaps.
 
     Arguments:
-        * primer_pairs:         a dictionary containing primer pair details output from
-                                create_primer_pairs()
-        * offset:               offset used for to remove as padding (default: 0)
-        * type:                 type of BED file to create ('full', 'no_primers', 'unique_amplicon')
+        * primer_pairs: a dictionary containing primer pair details output from
+                        create_primer_pairs()
+        * offset:       offset used for to remove as padding (default: 0)
+        * type:         type of BED file to create ('full', 'no_primers', 'unique_amplicon')
+        * delim:        pattern to use as the primer name delimiter (default: _)
     
     Return Values:
         Return a list containing the type specific amplicon region in BED format.
@@ -90,8 +91,12 @@ def create_amplicons(primer_pairs, offset=0, type='unique_amplicons', prefix='nC
     if type not in bed_types:
         sys.exit('Invalid type option')
     amplicons = list()
-    for index in range(0, len(primer_pairs)):
-        amplicon_id = index + 1
+    #for index in range(0, len(primer_pairs)):
+    for primer_name in primer_pairs:
+        _, index = primer_name.split(delim)
+        index = int(index)
+        #amplicon_id = index + 1
+        amplicon_id = index
         primer_name = f'{prefix}_{amplicon_id}'
         previous_primer_name = f'{prefix}_{amplicon_id-1}'
         next_primer_name = f'{prefix}_{amplicon_id + 1}'
@@ -108,7 +113,8 @@ def create_amplicons(primer_pairs, offset=0, type='unique_amplicons', prefix='nC
             else:
                 start = int(primer_pairs[primer_name]['left_end'])
 
-            if index < len(primer_pairs) - 1:
+            #if index < len(primer_pairs) - 1:
+            if index < len(primer_pairs):
                 end = min(int(primer_pairs[primer_name]['right_start']), int(primer_pairs[next_primer_name]['left_start']))
             else:
                 end = int(primer_pairs[primer_name]['right_start'])
