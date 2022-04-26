@@ -33,11 +33,11 @@ class Lineage():
         return row['lineage']
 
 
-    def get_notes(self, row):
+    def get_notes(self, row, colname='scorpio_notes'):
         """
         Return the notes that pangolin added to the lineage assignment
         """
-        n = row['note']
+        n = row[colname]
         if n.startswith('scorpio call'):
             n_dict = n.split(' ')
             alt = re.sub(';', '', n_dict[4])
@@ -51,11 +51,11 @@ class Lineage():
             return "none"
 
 
-    def get_scorpio_call(self, row):
+    def get_scorpio_call(self, row, colname='scorpio_call'):
         """
         Return the scorpio_call value
         """
-        return row['scorpio_call']
+        return row[colname]
 
     
     def create_lineage_dictionary(self):
