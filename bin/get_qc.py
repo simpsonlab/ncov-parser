@@ -35,6 +35,8 @@ parser.add_argument('-t', '--aa_table',
                     help='full path to the <sample>_aa_table.tsv file')
 parser.add_argument('-u', '--mutations',
                     help='full path to the <run>_ncov_watch_variants.tsv file')
+parser.add_argument('--pangolin_version', required=False, default='4',
+                    help='Pangolin version used for lineage classification (default: 4)')
 if len(sys.argv) == 1:
     parser.print_help(sys.stderr)
     sys.exit('Invalid number of arguments')
@@ -80,7 +82,7 @@ qc_line.update(coverage.get_coverage_stats())
 
 # Add the lineage from the Pangolin report
 try:
-    lineage = ncov.parser.Lineage(file=args.lineage)
+    lineage = ncov.parser.Lineage(file=args.lineage, pangolin_ver=args.pangolin_version)
     lineage.create_lineage_dictionary()
     qc_line.update({"lineage" : lineage.lineage_dict[args.sample]["lineage"]})
     qc_line.update({"lineage_notes" : lineage.lineage_dict[args.sample]["notes"]})

@@ -6,9 +6,17 @@ class Lineage():
     A class for handling Pangolin lineage reports.
     """
 
-    def __init__(self, file, delimiter=','):
+    def __init__(self, file, delimiter=',', pangolin_ver='3'):
         self.file = file
         self.delimiter = delimiter
+        self.pangolin_ver = pangolin_ver
+        if pangolin_ver == '3':
+            self.notes_col = 'note'
+        elif pangolin_ver == "4":
+            self.notes_col = 'scorpio_notes'
+        else:
+            self.notes_col = 'scorpio_notes'
+
 
 
     def get_sample_name(self, row):
@@ -33,20 +41,19 @@ class Lineage():
         return row['lineage']
 
 
-    def get_notes(self, row, colname='scorpio_notes'):
+    def get_notes(self, row):
         """
         Return the notes that pangolin added to the lineage assignment
         """
-        n = row[colname]
+        n = row[self.notes_col]
         if n.startswith('scorpio call'):
             n_dict = n.split(' ')
             alt = re.sub(';', '', n_dict[4])
             ref = re.sub(';', '', n_dict[7])
-            amb = n_dict[-1]
+            amb = re.sub(';', '', n_dict[10])
             tag = 'alt/ref/amb:'
             value = '/'.join([alt, ref, amb])
             return ''.join([tag, value])
-        #if n is None or n == "" or n.startswith('Assigned'):
         else:
             return "none"
 
