@@ -1,0 +1,4 @@
+taxon,lineage,conflict,ambiguity_score,scorpio_call,scorpio_support,scorpio_conflict,scorpio_notes,version,pangolin_version,scorpio_version,constellation_version,is_designated,qc_status,qc_notes,note
+sampleA,B.1.1.7,0.0,,Alpha (B.1.1.7-like),0.87,0.04,scorpio call: Alt alleles 20; Ref alleles 1; Amb alleles 2; Oth alleles 0,PUSHER-v1.3,4.0.5,0.3.16,v0.1.6,False,pass,Ambiguous_content:0.03,Usher placements: B.1.1.7(1/1)
+sampleB,B.1.1.7,0.0,,Alpha (B.1.1.7-like),0.91,0.04,scorpio call: Alt alleles 21; Ref alleles 1; Amb alleles 1; Oth alleles 0,PUSHER-v1.3,4.0.5,0.3.16,v0.1.6,False,pass,Ambiguous_content:0.15,Usher placements: B.1.1.7(2/2)
+sampleC,B.1.1.7,0.0,,Alpha (B.1.1.7-like),0.87,0.04,scorpio call: Alt alleles 20; Ref alleles 1; Amb alleles 2; Oth alleles 0,PUSHER-v1.3,4.0.5,0.3.16,v0.1.6,False,pass,Ambiguous_content:0.03,Usher placements: B.1.1.7(1/1)
